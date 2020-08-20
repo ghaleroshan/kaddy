@@ -60,6 +60,7 @@ export const ImageList = ({ images }) => {
               </TitleWrapper>
             </ImageWrapper>
           ))}
+        {!images.length && <p> No Results Found</p>}
       </Container>
     </>
   );

@@ -5,7 +5,6 @@ import { auth } from "./config";
 import { InputForm } from "./components/form";
 import { ImageList } from "./components/images";
 import { CustomPagination } from "./common/constant/paginate";
-import { Spinner } from "./common/Spinner";
 
 export const App = () => {
   const [data, setData] = useState({});
@@ -20,7 +19,10 @@ export const App = () => {
       setData(res.data);
       setImages(res.data.results);
     } catch (err) {
-      console.log("Error fetching images", err);
+      console.log(
+        { message: "Sorry could not find the image you are looking for" },
+        err
+      );
     }
   };
 
@@ -40,13 +42,11 @@ export const App = () => {
     getImages(query);
   };
 
-  console.log(images);
   return (
     <div className="App">
       <InputForm handleChange={handleChange} handleClick={handleClick} />
 
       {images && <ImageList images={images} />}
-
       <CustomPagination data={data} setCounter={setCounter} />
     </div>
   );
